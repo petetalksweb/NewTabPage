@@ -6,10 +6,63 @@
 </head>
 <body>
     <script>
-        console.log(navigator.geolocation.getCurrentPosition());
-        function logPosition(position) {
-            console.log(position)
+        var austinTXPosition = {'lat': 30.268328,
+                                'lon': -97.7554749};
+        function formatPosition(geolocatedPosition) {
+            return {'lat': geolocatedPosition.coords.latitude,
+                    'lon': geolocatedPosition.coords.longitude};
         }
+        function getUserPosition() {
+            return new Promise(function(resolve, reject) {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+        }
+        function ajaxGet(url) {
+            return new Promise(function(resolve, reject) {
+                var xmlHTTPRequest = new XMLHttpRequest();
+                xmlHTTPRequest.open('GET', url);
+
+                xmlHTTPRequest.onload = function() {
+                    if (xmlHTTPRequest.status == 200) {
+                        resolve(xmlHTTPRequest.response);
+                    }
+                    else {
+                        reject('AJAX GET request for URL: ' + url + ' failed');
+                    }
+                };
+
+                xmlHTTPRequest.onerror = function() {
+                    reject('Network error during AJAX GET request for URL: ' + url);
+                };
+
+                xmlHTTPRequest.send();
+            });
+        }
+        function formatWeatherURL(userPosition) {
+            return 'http://api.openweathermap.org/data/2.5/weather?units=imperial' +
+                            '&lat=' + userPosition.lat +
+                            '&lon=' + userPosition.lon +
+                            '&APPID=03cac59ece41996f5673208b2ed57345';
+
+        }
+        function displayWeatherInfo() {
+            getUserPosition().then(function(position) {
+                var userPosition = formatPosition(position);
+                var weatherURL = formatWeatherURL(userPosition);
+                ajaxGet(weatherURL).then(function(weatherResponse) {
+                    var weatherResponseJSON = JSON.parse(weatherResponse);
+                    var temp = weatherResponseJSON.main.temp;
+                    console.log(temp);
+                }).catch(function(error) {
+                    console.error(error);
+                });
+            }).catch(function(error) {
+                console.error(error);
+            });
+        }
+
+        displayWeatherInfo();
+
     </script>
 </body>
 </html>
