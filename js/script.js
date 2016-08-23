@@ -1,1 +1,1 @@
-displayTemperature('temperature');
+getWeatherInformation();
