@@ -42,9 +42,17 @@ function generateTimeUntilWorkEnds(currentTime) {
 }
 
 function generateCountdownTimeHTML(timeUntil) {
+    timeUntil = formatTimeUntil(timeUntil);
     var countdownTimeDiv = document.createElement('div');
     countdownTimeDiv.innerHTML = timeUntil.hours + ':' + timeUntil.minutes;
     document.getElementById('countdown').appendChild(countdownTimeDiv);
+}
+
+function formatTimeUntil(timeUntil){
+    if(timeUntil.minutes.length < 2) {
+        timeUntil.minutes = '0' + timeUntil.minutes;
+    }
+    return timeUntil;
 }
 
 function getCountdownTimeInformation() {
