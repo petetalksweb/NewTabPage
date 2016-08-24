@@ -33,9 +33,9 @@ function generateAllHNStoryHTML(hnStoryResponses) {
 }
 
 function generateHNStoryHTML(hnStory) {
-    var hnStoryNode = document.createElement('div');
-    hnStoryNode.appendChild(generateHNStoryLink(hnStory));
-    document.getElementById('hackerNews').appendChild(hnStoryNode);
+    var hnStoryDiv = document.createElement('div');
+    hnStoryDiv.appendChild(generateHNStoryLink(hnStory));
+    document.getElementById('hackerNews').appendChild(hnStoryDiv);
 }
 
 function generateHNStoryLink(hnStory) {
