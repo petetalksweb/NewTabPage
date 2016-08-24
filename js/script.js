@@ -1,3 +1,4 @@
 getWeatherInformation();
 getHackerNewInformation();
 getVestInformation();
+getCountdownTimeInformation();
