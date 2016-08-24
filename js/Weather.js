@@ -10,9 +10,8 @@ function getWeatherInformation() {
 
 function getWeatherDataForPosition(userPosition) {
     var weatherURL = formatWeatherURL(userPosition);
-    ajaxGet(weatherURL).then(function(weatherResponse) {
-        var weatherResponseJSON = JSON.parse(weatherResponse);
-        var temperature = formatTemperature(weatherResponseJSON.main.temp);
+    ajaxGetJSON(weatherURL).then(function(weatherResponse) {
+        var temperature = formatTemperature(weatherResponse.main.temp);
         displayTemperature(temperature);
     }).catch(function(error) {
         console.error(error);
