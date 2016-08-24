@@ -1,4 +1,4 @@
-var hnTopStoriesURL = 'https://hacker-news.firebaseio.com/v0/beststories.json';
+var hnTopStoriesURL = 'https://hacker-news.firebaseio.com/v0/topstories.json';
 
 function getHackerNewInformation() {
     ajaxGetJSON(hnTopStoriesURL).then(function(hnTopStoryIDs) {
