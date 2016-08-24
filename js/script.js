@@ -1,2 +1,3 @@
 getWeatherInformation();
 getHackerNewInformation();
+getVestInformation();
