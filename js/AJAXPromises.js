@@ -26,3 +26,9 @@ function ajaxGetJSON(url) {
         })
     });
 }
+
+function ajaxGetJSONP(url, callback) {
+    var jsonpScript = document.createElement('script');
+    jsonpScript.setAttribute('src', url + '&callback=' + callback);
+    document.body.appendChild(jsonpScript);
+}
