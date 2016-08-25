@@ -6,11 +6,18 @@
 </head>
 <body>
     <div id="temperature"></div>
+    <hr />
     <div id="hackerNews"></div>
+    <hr />
     <div id="vest"></div>
+    <hr />
     <div id="countdown"></div>
+    <hr />
     <div id="wikipedia"></div>
+    <hr />
     <div id="devRSS"></div>
+    <hr />
+    <div id="newsRSS"></div>
     <script type="text/javascript" src="js/AJAXPromises.js"></script>
     <script type="text/javascript" src="js/UserPosition.js"></script>
     <script type="text/javascript" src="js/Weather.js"></script>
@@ -18,106 +25,10 @@
     <script type="text/javascript" src="js/Vest.js"></script>
     <script type="text/javascript" src="js/Countdown.js"></script>
     <script type="text/javascript" src="js/Wikipedia.js"></script>
+    <script type="text/javascript" src="js/RSS.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
-    var rssURLs = ['http://daverupert.com/atom.xml',
-        'https://jakearchibald.com/posts.rss',
-        'http://feeds.igvita.com/igvita',
-        'http://feeds.feedburner.com/paul-irish?format=xml',
-        'http://feeds.feedburner.com/CssTricks?format=xml',
-        'https://blog.codepen.io/feed/',
-        'https://hacks.mozilla.org/feed/'
-    ];
-    function getRSSFeeds() {
-        var rssPromises = [];
-        for(var i = 0; i < rssURLs.length; i++) {
-            rssPromises.push(ajaxGet(yqlURLGenerator(rssURLs[i])));
-        }
-        Promise.all(rssPromises).then(function(rss) {
-            var posts = [];
-            for(var i = 0; i < rss.length; i++) {
-                posts = posts.concat(generatePostsJSON(rss[i]));
-            }
-            posts.sort(postsDateCompare);
-            generateAllBlogPostHTML(posts);
-        });
-    }
-
-    function generateAllBlogPostHTML(posts) {
-        for(var i = 0; i < 10; i++) {
-            generateBlogPostHTML(posts[i]);
-        }
-    }
-
-    function generateBlogPostHTML(post) {
-        var blogPostDiv = document.createElement('div');
-        blogPostDiv.appendChild(generateBlogPostLink(post));
-        document.getElementById('devRSS').appendChild(blogPostDiv);
-    }
-
-    function generateBlogPostLink(post) {
-        var blogPostLink = document.createElement('a');
-        blogPostLink.href = post.link;
-        blogPostLink.innerHTML = post.title;
-        return blogPostLink;
-    }
-
-    getRSSFeeds();
-
-    function postsDateCompare(post1, post2) {
-        var post1Date = new Date(post1.date).getTime();
-        var post2Date = new Date(post2.date).getTime();
-        if (post1Date > post2Date) {
-            return -1;
-        }
-        if (post1Date < post2Date) {
-            return 1;
-        }
-        return 0;
-    }
-
-    var parser = new DOMParser();
-    function generatePostsJSON(rssResponse) {
-        var rss = parser.parseFromString(rssResponse, "application/xml");
-        var articles = rss.getElementsByTagName('item');
-        if(articles.length != 0) {
-            return parseArticleItems(articles);
-        } else {
-            var entries = rss.getElementsByTagName('entry');
-            return parseEntryItems(entries);
-        }
-        return [];
-    }
-    function parseArticleItems(articles) {
-        var articlesJSON = [];
-        for(var i = 0; i < articles.length; i++) {
-            var articleJSON = {};
-            articleJSON.title = articles[i].getElementsByTagName('title')[0].innerHTML;
-            articleJSON.link = articles[i].getElementsByTagName('link')[0].innerHTML;
-            articleJSON.date = articles[i].getElementsByTagName('pubDate')[0].innerHTML;
-            articlesJSON.push(articleJSON);
-        }
-        return articlesJSON;
-    }
-    function parseEntryItems(entries) {
-        var entriesJSON = [];
-        for(var i = 0; i < entries.length; i++) {
-            var entryJSON = {};
-            entryJSON.title = entries[i].getElementsByTagName('title')[0].innerHTML;
-            if(entryJSON.title.indexOf('![CDATA[') > 0) {
-                entryJSON.title = entryJSON.title.slice(9, entryJSON.title.length - 3);
-            }
-            entryJSON.link = entries[i].getElementsByTagName('id')[0].innerHTML;
-            entryJSON.date = entries[i].getElementsByTagName('updated')[0].innerHTML;
-            entriesJSON.push(entryJSON);
-        }
-        return entriesJSON;
-    }
-    function yqlURLGenerator(actualURL) {
-        return 'http://query.yahooapis.com/v1/public/yql?q=' +
-                encodeURIComponent('select * from xml where url="' + actualURL + '"') +
-                "&format=xml"
-    }
+    
 </script>
 </body>
 </html>
