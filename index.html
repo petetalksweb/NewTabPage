@@ -10,6 +10,7 @@
     <div id="vest"></div>
     <div id="countdown"></div>
     <div id="wikipedia"></div>
+    <div id="devRSS"></div>
     <script type="text/javascript" src="js/AJAXPromises.js"></script>
     <script type="text/javascript" src="js/UserPosition.js"></script>
     <script type="text/javascript" src="js/Weather.js"></script>
@@ -19,7 +20,66 @@
     <script type="text/javascript" src="js/Wikipedia.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
+    var rssURLs = ['http://daverupert.com/atom.xml',
+        'https://jakearchibald.com/posts.rss',
+        'http://feeds.igvita.com/igvita',
+        'http://feeds.feedburner.com/paul-irish?format=xml',
+        'http://feeds.feedburner.com/CssTricks?format=xml',
+        'https://blog.codepen.io/feed/',
+        'https://hacks.mozilla.org/feed/'
+    ];
+    function getRSSFeeds() {
+        for(var i = 0; i < rssURLs.length; i++) {
+            ajaxGetJSONP(yqlURLGenerator(rssURLs[i]), 'generatePostsJSON');
+        }
+    }
 
+    getRSSFeeds();
+
+    var parser = new DOMParser();
+    function generatePostsJSON(rssResponse) {
+        var rss = parser.parseFromString(rssResponse.results, "application/xml");
+        var articles = rss.getElementsByTagName('item');
+        if(articles.length != 0) {
+            return parseArticleItems(articles);
+        } else {
+            var entries = rss.getElementsByTagName('entry');
+            return parseEntryItems(entries);
+        }
+        return [];
+    }
+    function parseArticleItems(articles) {
+        var articlesJSON = [];
+        for(var i = 0; i < articles.length; i++) {
+            var articleJSON = {};
+            articleJSON.title = articles[i].getElementsByTagName('title')[0].innerHTML;
+            articleJSON.link = articles[i].getElementsByTagName('link')[0].innerHTML;
+            articleJSON.date = articles[i].getElementsByTagName('pubDate')[0].innerHTML;
+            articlesJSON.push(articleJSON);
+        }
+        console.log(articlesJSON);
+        return articlesJSON;
+    }
+    function parseEntryItems(entries) {
+        var entriesJSON = [];
+        for(var i = 0; i < entries.length; i++) {
+            var entryJSON = {};
+            entryJSON.title = entries[i].getElementsByTagName('title')[0].innerHTML;
+            if(entryJSON.title.indexOf('![CDATA[') > 0) {
+                entryJSON.title = entryJSON.title.slice(9, entryJSON.title.length - 3);
+            }
+            entryJSON.link = entries[i].getElementsByTagName('id')[0].innerHTML;
+            entryJSON.date = entries[i].getElementsByTagName('updated')[0].innerHTML;
+            entriesJSON.push(entryJSON);
+        }
+        console.log(entriesJSON);
+        return entriesJSON;
+    }
+    function yqlURLGenerator(actualURL) {
+        return 'http://query.yahooapis.com/v1/public/yql?q=' +
+                encodeURIComponent('select * from xml where url="' + actualURL + '"') +
+                "&format=xml"
+    }
 </script>
 </body>
 </html>
