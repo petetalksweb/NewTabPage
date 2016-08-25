@@ -29,16 +29,56 @@
         'https://hacks.mozilla.org/feed/'
     ];
     function getRSSFeeds() {
+        var rssPromises = [];
         for(var i = 0; i < rssURLs.length; i++) {
-            ajaxGetJSONP(yqlURLGenerator(rssURLs[i]), 'generatePostsJSON');
+            rssPromises.push(ajaxGet(yqlURLGenerator(rssURLs[i])));
         }
+        Promise.all(rssPromises).then(function(rss) {
+            var posts = [];
+            for(var i = 0; i < rss.length; i++) {
+                posts = posts.concat(generatePostsJSON(rss[i]));
+            }
+            posts.sort(postsDateCompare);
+            generateAllBlogPostHTML(posts);
+        });
+    }
+
+    function generateAllBlogPostHTML(posts) {
+        for(var i = 0; i < 10; i++) {
+            generateBlogPostHTML(posts[i]);
+        }
+    }
+
+    function generateBlogPostHTML(post) {
+        var blogPostDiv = document.createElement('div');
+        blogPostDiv.appendChild(generateBlogPostLink(post));
+        document.getElementById('devRSS').appendChild(blogPostDiv);
+    }
+
+    function generateBlogPostLink(post) {
+        var blogPostLink = document.createElement('a');
+        blogPostLink.href = post.link;
+        blogPostLink.innerHTML = post.title;
+        return blogPostLink;
     }
 
     getRSSFeeds();
 
+    function postsDateCompare(post1, post2) {
+        var post1Date = new Date(post1.date).getTime();
+        var post2Date = new Date(post2.date).getTime();
+        if (post1Date > post2Date) {
+            return -1;
+        }
+        if (post1Date < post2Date) {
+            return 1;
+        }
+        return 0;
+    }
+
     var parser = new DOMParser();
     function generatePostsJSON(rssResponse) {
-        var rss = parser.parseFromString(rssResponse.results, "application/xml");
+        var rss = parser.parseFromString(rssResponse, "application/xml");
         var articles = rss.getElementsByTagName('item');
         if(articles.length != 0) {
             return parseArticleItems(articles);
@@ -57,7 +97,6 @@
             articleJSON.date = articles[i].getElementsByTagName('pubDate')[0].innerHTML;
             articlesJSON.push(articleJSON);
         }
-        console.log(articlesJSON);
         return articlesJSON;
     }
     function parseEntryItems(entries) {
@@ -72,7 +111,6 @@
             entryJSON.date = entries[i].getElementsByTagName('updated')[0].innerHTML;
             entriesJSON.push(entryJSON);
         }
-        console.log(entriesJSON);
         return entriesJSON;
     }
     function yqlURLGenerator(actualURL) {
