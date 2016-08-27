@@ -8,7 +8,7 @@
 
 }
 .temperatures {
-    height: 100%;
+    height: calc(100% + 10px);
     vertical-align: middle;
 }
 .temperatureTable {
@@ -22,6 +22,7 @@
 }
 #weatherIcon {
     padding-top: 15px;
+    padding-bottom: 10px;
 }
 #temperature {
     font-size: 3em;
