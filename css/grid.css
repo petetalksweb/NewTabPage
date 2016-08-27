@@ -13,12 +13,11 @@
 }
 
 .flex-item {
-    color: white;
-    font-weight: bold;
+    color: black;
 }
 
 .flex-item-content {
-    background: tomato;
+    background: white;
     padding: 5px;
     margin: 2px;
     height: calc(100% - 14px);

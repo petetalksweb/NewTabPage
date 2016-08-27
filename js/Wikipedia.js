@@ -4,7 +4,6 @@ var randomArticleID = 0;
 function randomWikiArticleCallback(randomWikiArticleData) {
     var wikiArticleURL = generateWikiArticleExtractURL(randomWikiArticleData.query.random[0].title);
     randomArticleID = randomWikiArticleData.query.random[0].id;
-    console.log(randomArticleID);
     ajaxGetJSONP(wikiArticleURL, 'generateRandomWikiArticleHTML');
 }
 

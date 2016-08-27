@@ -1,0 +1,28 @@
+#weatherDescription {
+    text-transform: capitalize;
+}
+.weatherReport {
+    display: flex;
+    margin: auto 0;
+    text-align: center;
+
+}
+.temperatures {
+    height: 100%;
+    vertical-align: middle;
+}
+.temperatureTable {
+    height: 118px;
+    border-left: 2px solid black;
+    padding-left: 10px;
+    width: 50%;
+}
+.weatherDescription {
+    width: 50%;
+}
+#weatherIcon {
+    padding-top: 15px;
+}
+#temperature {
+    font-size: 3em;
+}

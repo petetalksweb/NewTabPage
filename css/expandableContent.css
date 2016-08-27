@@ -5,8 +5,8 @@
 
 .expandCollapseIcon {
     padding: 0 10px;
+    cursor: pointer;
 }
-
 
 .expandableItemDescription {
     border-left: 2px solid blue;

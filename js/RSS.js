@@ -8,7 +8,6 @@ function getRSSFeeds(urls, elementID) {
         for(var i = 0; i < rss.length; i++) {
             posts = posts.concat(generatePostsJSON(rss[i]));
         }
-        console.log(posts);
         posts.sort(postsDateCompare);
         generateAllBlogPostHTML(posts, elementID);
     });
@@ -19,8 +18,6 @@ function generateAllBlogPostHTML(posts, elementID) {
 
     for(var i = 0; i < 10; i++) {
         containingDiv.appendChild(generateExpandCollapseItem(posts[i].title, posts[i].link, posts[i].description));
-        // var line = document.createElement('hr');
-        // containingDiv.appendChild(line);
     }
 }
 
@@ -76,9 +73,7 @@ function parseArticleItems(articles) {
             if(articleJSON.description.indexOf('![CDATA[') > 0) {
                 articleJSON.description = articleJSON.description.slice(9, articleJSON.description.length - 3);
             }
-            console.log(articleJSON.description);
             if(articleJSON.description.indexOf('&lt;') > 0) {
-                console.log('whaaa');
                 articleJSON.description = articleJSON.description.substring(0, articleJSON.description.indexOf('&lt;'));
             }
         }

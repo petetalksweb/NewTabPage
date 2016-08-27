@@ -11,7 +11,6 @@ function generateExpandCollapseIcon() {
     expandCollapseIcon.className = 'expandCollapseIcon';
     expandCollapseIcon.onclick = function() {expandCollapseItem(this);};
     expandCollapseIcon.innerHTML = '+';
-    console.log(expandCollapseIcon.onClick);
     return expandCollapseIcon;
 }
 
