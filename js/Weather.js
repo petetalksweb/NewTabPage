@@ -19,7 +19,12 @@ function getWeatherDataForPosition(userPosition) {
 }
 
 function displayTemperature(temperature) {
-    document.getElementById('temperature').innerHTML = temperature;
+    var weatherH = document.createElement('h1');
+    weatherH.innerHTML = 'Temperature';
+    document.getElementById('temperature').appendChild(weatherH);
+    var weatherP = document.createElement('p');
+    weatherP.innerHTML = temperature;
+    document.getElementById('temperature').appendChild(weatherP);
 }
 
 function formatPosition(geolocatedPosition) {

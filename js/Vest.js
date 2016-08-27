@@ -17,9 +17,12 @@ function calculateVestInformation() {
 }
 
 function generateVestInformationHTML(vestInformation) {
-    var daysUntilVestDiv = document.createElement('div');
-    daysUntilVestDiv.innerHTML = vestInformation.numberOfDays;
-    document.getElementById('vest').appendChild(daysUntilVestDiv);
+    var daysUntilVestH = document.createElement('h1');
+    daysUntilVestH.innerHTML = 'Days Until Vesting';
+    document.getElementById('vest').appendChild(daysUntilVestH);
+    var daysUntilVestP = document.createElement('p');
+    daysUntilVestP.innerHTML = vestInformation.numberOfDays;
+    document.getElementById('vest').appendChild(daysUntilVestP);
 }
 
 function getVestInformation() {
