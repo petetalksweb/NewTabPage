@@ -1,18 +1,17 @@
 .expandableItem {
     display: flex;
+    padding: 5px 0;
 }
 
 .expandCollapseIcon {
     padding: 0 10px;
 }
 
-.expandableItemContent {
-    border-left: 2px solid blue;
-    padding-left: 5px;
-}
 
 .expandableItemDescription {
-    border-top: 1px solid blue;
+    border-left: 2px solid blue;
     display: none;
     margin: 0;
+    padding-left: 10px;
+    width: calc(100% - 15px);
 }

@@ -15,8 +15,12 @@ function getRSSFeeds(urls, elementID) {
 }
 
 function generateAllBlogPostHTML(posts, elementID) {
+    var containingDiv = document.getElementById(elementID);
+
     for(var i = 0; i < 10; i++) {
-        generateBlogPostHTML(posts[i], elementID);
+        containingDiv.appendChild(generateExpandCollapseItem(posts[i].title, posts[i].link, posts[i].description));
+        // var line = document.createElement('hr');
+        // containingDiv.appendChild(line);
     }
 }
 
@@ -68,6 +72,15 @@ function parseArticleItems(articles) {
             }
             articleJSON.link = articles[i].getElementsByTagName('link')[0].innerHTML;
             articleJSON.date = articles[i].getElementsByTagName('pubDate')[0].innerHTML;
+            articleJSON.description = articles[i].getElementsByTagName('description')[0].innerHTML;
+            if(articleJSON.description.indexOf('![CDATA[') > 0) {
+                articleJSON.description = articleJSON.description.slice(9, articleJSON.description.length - 3);
+            }
+            console.log(articleJSON.description);
+            if(articleJSON.description.indexOf('&lt;') > 0) {
+                console.log('whaaa');
+                articleJSON.description = articleJSON.description.substring(0, articleJSON.description.indexOf('&lt;'));
+            }
         }
         articlesJSON.push(articleJSON);
     }

@@ -29,7 +29,7 @@
         <div class="flex-item widget">
             <section id="wikipedia" class="flex-item-content"></section>
         </div>
-
+        <script type="text/javascript" src="js/ExpandCollapseItem.js"></script>
         <script type="text/javascript" src="js/AJAXPromises.js"></script>
         <script type="text/javascript" src="js/UserPosition.js"></script>
         <script type="text/javascript" src="js/Weather.js"></script>
@@ -57,17 +57,7 @@
 
     </div>
 <script type="text/javascript">
-    function expandCollapseItem(expandCollapseIcon) {
-        var expandableItemContent = expandCollapseIcon.parentNode.getElementsByClassName('expandableItemContent')[0];
-        var expandableItemDescription = expandableItemContent.getElementsByClassName('expandableItemDescription')[0];
-        if(expandCollapseIcon.innerHTML === '+') {
-            expandableItemDescription.style.display = 'block';
-            expandCollapseIcon.innerHTML = '-';
-        } else {
-            expandableItemDescription.style.display = 'none';
-            expandCollapseIcon.innerHTML = '+';
-        }
-    }
+
 </script>
 </body>
 </html>
