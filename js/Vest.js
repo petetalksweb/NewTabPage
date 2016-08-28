@@ -17,11 +17,8 @@ function calculateVestInformation() {
 }
 
 function generateVestInformationHTML(vestInformation) {
-    var c = document.getElementById("vestPercentage");
-    var ctx = c.getContext("2d");
-    ctx.beginPath();
-    ctx.arc(63, 63, 60, 0, 2 * Math.PI * .75);
-    ctx.stroke();
+    document.getElementById('days').innerHTML = vestInformation.numberOfDays;
+    document.getElementById('progress').style.width = vestInformation.completionPercentage + '%';
     // vestInformation.completionPercentage
     // document.getElementsByClassName('days')[0].innerHTML = vestInformation.numberOfDays;
 }

@@ -13,12 +13,11 @@
 }
 .temperatureTable {
     height: 118px;
-    border-left: 2px solid black;
-    padding-left: 10px;
     width: 50%;
 }
 .weatherDescription {
     width: 50%;
+    border-right: 2px solid black;
 }
 #weatherIcon {
     padding-top: 15px;

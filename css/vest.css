@@ -1,7 +1,17 @@
-#vestPercentage {
-    width: 100%;
-    height: 126px;
-}
-.days {
+#days {
+    font-size: 3em;
+    padding: 10px 0;
     text-align: center;
+}
+#progressBar {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background-color: #ddd;
+}
+
+#progress {
+    position: absolute;
+    height: 100%;
+    background-color: #4CAF50;
 }
