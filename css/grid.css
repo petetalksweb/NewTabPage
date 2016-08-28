@@ -23,9 +23,31 @@
     height: calc(100% - 14px);
 }
 
-@media(min-width: 1500px) {
+.fullWidget {
+    width: 100%;
+}
+@media(min-width: 300px) {
     .flex-container {
-        width: 1500px;
+        width: 300px;
+    }
+    .widget {
+        width: calc(100%);
+    }
+}
+@media(min-width: 600px) {
+    .flex-container {
+        width: 600px;
+    }
+    .widget {
+        width: calc(100% / 2);
+    }
+}
+@media(min-width: 900px) {
+    .flex-container {
+        width: 900px;
+    }
+    .widget {
+        width: calc(100% / 2);
     }
 }
 
@@ -36,7 +58,12 @@
     .widget {
         width: calc(100% / 3);
     }
-    .list {
-        width: calc(100% / 2);
+}
+
+@media(min-width: 1500px) {
+    .flex-container {
+        width: 1500px;
     }
 }
+
+

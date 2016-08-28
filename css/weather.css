@@ -19,8 +19,16 @@
     width: 50%;
     border-right: 2px solid black;
 }
+.fa-day-sunny-overcast::before {
+    font-size:0.88em;
+}
+.fa-day-rain::before {
+    font-size:0.88em;
+}
+.fa-day-fog::before {
+    font-size:0.88em;
+}
 #weatherIcon {
-    padding-top: 15px;
     padding-bottom: 10px;
 }
 #temperature {

@@ -34,6 +34,7 @@ function generateAllHNStoryHTML(hnStoryResponses) {
 
 function generateHNStoryHTML(hnStory) {
     var hnStoryDiv = document.createElement('div');
+    hnStoryDiv.className = 'hackerNewsLink';
     hnStoryDiv.appendChild(generateHNStoryLink(hnStory));
     document.getElementById('hackerNews').appendChild(hnStoryDiv);
 }
