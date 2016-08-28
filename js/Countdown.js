@@ -43,14 +43,18 @@ function generateTimeUntilWorkEnds(currentTime) {
 
 function generateCountdownTimeHTML(timeUntil) {
     timeUntil = formatTimeUntil(timeUntil);
-    var countdownTimeDiv = document.createElement('div');
-    countdownTimeDiv.innerHTML = timeUntil.hours + ':' + timeUntil.minutes;
-    document.getElementById('countdown').appendChild(countdownTimeDiv);
+    document.getElementById('countdownTime').innerHTML = timeUntil.hours + ':' + timeUntil.minutes;
+    var untilDiv = document.getElementById('countdownUntil');
+    if(countingToQuittingTime) {
+        untilDiv.innerHTML = "Until Quitting Time";
+    } else {
+        untilDiv.innerHTML = "Until Work Time";
+    }
 }
 
 function formatTimeUntil(timeUntil){
-    if(timeUntil.minutes.length < 2) {
-        timeUntil.minutes = '0' + timeUntil.minutes;
+    if(String(timeUntil.minutes).length < 2) {
+        timeUntil.minutes = '0' + String(timeUntil.minutes);
     }
     return timeUntil;
 }

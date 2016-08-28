@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/expandableContent.css" />
     <link rel="stylesheet" href="css/weather.css" />
     <link rel="stylesheet" href="css/vest.css" />
+    <link rel="stylesheet" href="css/countdown.css" />
     <style>
         body {
             background-color: #d3d3d3;
@@ -26,8 +27,19 @@
             font-size: 1em;
         }
         .center {
-            display: flex;
-            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+        .fakeTable {
+            display: table;
+            width: 100%;
+            height: calc(100% - 40px);
+        }
+        .fakeTableCell {
+            display: table-cell;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -70,7 +82,18 @@
             </section>
         </div>
         <div class="flex-item widget">
-            <section id="countdown" class="flex-item-content"></section>
+            <section id="countdown" class="flex-item-content">
+                <h1>
+                    Countdown
+                </h1>
+                <hr />
+                <div class="fakeTable">
+                    <div class="fakeTableCell">
+                        <div id="countdownTime" class="center"></div>
+                        <div id="countdownUntil" class="center"></div>
+                    </div>
+                </div>
+            </section>
         </div>
         <div class="flex-item widget">
             <section id="hackerNews" class="flex-item-content">
