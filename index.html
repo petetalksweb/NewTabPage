@@ -42,6 +42,10 @@
             vertical-align: middle;
             width: 100%;
             height: 100%;
+            text-align: center;
+        }
+        .paddingTop {
+            padding-top: 5px;
         }
     </style>
 </head>
@@ -86,6 +90,22 @@
                             <div id="progressBar">
                                 <div id="progress"></div>
                             </div>
+                        </div>
+                        <div class="paddingTop">
+                            <label for="startDate">
+                                Start:
+                            </label>
+                            <input id="startDate"
+                                   onchange="updateVestInformation()"
+                                   type="date"
+                                   value="2014-07-14"/>
+                            <label for="vestDate">
+                                Vest:
+                            </label>
+                            <input id="vestDate"
+                                   onchange="updateVestInformation()"
+                                   type="date"
+                                   value="2017-07-14"/>
                         </div>
                     </div>
                 </div>
@@ -137,6 +157,7 @@
                 <hr />
             </section>
         </div>
+        <script type="text/javascript" src="js/Cookie.js"></script>
         <script type="text/javascript" src="js/ExpandCollapseItem.js"></script>
         <script type="text/javascript" src="js/AJAXPromises.js"></script>
         <script type="text/javascript" src="js/UserPosition.js"></script>

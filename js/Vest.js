@@ -1,8 +1,9 @@
 var oneDayInMS = 1000 * 60 * 60 * 24;
 
 function calculateVestInformation() {
-    var startDate = new Date('July 14, 2014');
-    var vestDate = new Date('July 14, 2017');
+    var startDate = new Date(document.getElementById('startDate').value);
+    var vestDate = new Date(document.getElementById('vestDate').value);
+    console.log(vestDate);
     var todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
     var vestTimeInMS = vestDate.getTime() - startDate.getTime();
@@ -19,10 +20,28 @@ function calculateVestInformation() {
 function generateVestInformationHTML(vestInformation) {
     document.getElementById('days').innerHTML = vestInformation.numberOfDays;
     document.getElementById('progress').style.width = vestInformation.completionPercentage + '%';
-    // vestInformation.completionPercentage
-    // document.getElementsByClassName('days')[0].innerHTML = vestInformation.numberOfDays;
 }
 
 function getVestInformation() {
+    loadVestInformation();
     generateVestInformationHTML(calculateVestInformation());
+}
+
+function loadVestInformation() {
+    var startDate = getCookie('startDate');
+    var vestDate = getCookie('vestDate');
+    if(startDate) {
+        document.getElementById('startDate').value = startDate;
+        document.getElementById('vestDate').value = vestDate;
+    }
+}
+function updateVestInformation() {
+    generateVestInformationHTML(calculateVestInformation());
+    updateCookie();
+}
+function updateCookie() {
+    var startDateString = document.getElementById('startDate').value;
+    var vestDateString = document.getElementById('vestDate').value;
+    setCookie('startDate', startDateString);
+    setCookie('vestDate', vestDateString);
 }
