@@ -30,6 +30,10 @@ function generateTimeUntilWorkStarts(currentTime) {
     if(currentTime.getHours() > 9) {
         workStartsTime.addDays(1);
     }
+    while(workStartsTime.getDay() == 0 || workStartsTime.getDay() == 6) {
+        workStartsTime.addDays(1);
+    }
+    console.log(workStartsTime.getDay());
     workStartsTime.setHours(9, 0, 0);
     return workStartsTime;
 }
