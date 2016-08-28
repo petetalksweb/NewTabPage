@@ -2,7 +2,7 @@ var iconMap = {
     '01d' : 'fa-day-sunny', // clear sky day
     '01n' : 'fa-weather-night', // clear sky night
     '02d' : 'fa-day-sunny-overcast', // few clouds day
-    '02c' : 'fa-night-cloudy', // few clouds night
+    '02n' : 'fa-night-cloudy', // few clouds night
     '03d' : 'fa-weather-cloudy', // scattered clouds
     '03n' : 'fa-weather-cloudy',
     '04d' : 'fa-cloudy', // broken clouds
@@ -50,6 +50,7 @@ function displayDescription(weatherResponse) {
     document.getElementById('weatherDescription').innerHTML = weatherResponse.weather[0].description;
 }
 function displayIcon(weatherResponse) {
+    console.log(weatherResponse.weather[0].icon);
     var weatherIconCode = weatherResponse.weather[0].icon;
     if(!weatherIconCode) {
         weatherIconCode = 'x';
