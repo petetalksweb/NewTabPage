@@ -25,6 +25,7 @@ function generateVestInformationHTML(vestInformation) {
 function getVestInformation() {
     loadVestInformation();
     generateVestInformationHTML(calculateVestInformation());
+    setupModal('vestInformationModal', 'vestSettingsIcon', 'vestSettingsClose');
 }
 
 function loadVestInformation() {
