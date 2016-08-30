@@ -19,3 +19,4 @@ getCountdownTimeInformation();
 getWikipeidaInformation();
 getRSSFeeds(devRSSURLs, 'devRSS');
 getRSSFeeds(newsRSSURLs, 'newsRSS');
+getRedditInformation();
