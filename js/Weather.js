@@ -33,7 +33,6 @@ function getWeatherInformation() {
 function getWeatherDataForPosition(userPosition) {
     var weatherURL = formatWeatherURL(userPosition);
     ajaxGetJSON(weatherURL).then(function(weatherResponse) {
-        console.log(weatherResponse);
         displayWeather(weatherResponse);
     }).catch(function(error) {
         console.error(error);
@@ -50,13 +49,11 @@ function displayDescription(weatherResponse) {
     document.getElementById('weatherDescription').innerHTML = weatherResponse.weather[0].description;
 }
 function displayIcon(weatherResponse) {
-    console.log(weatherResponse.weather[0].icon);
     var weatherIconCode = weatherResponse.weather[0].icon;
     if(!weatherIconCode) {
         weatherIconCode = 'x';
     }
     document.getElementById('weatherIcon').className = 'fa fa-5x ' + iconMap[weatherIconCode];
-    console.log(iconMap[weatherIconCode]);
 }
 function displayTemperature(weatherResponse) {
     var temperature = formatTemperature(weatherResponse.main.temp);

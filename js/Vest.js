@@ -3,7 +3,6 @@ var oneDayInMS = 1000 * 60 * 60 * 24;
 function calculateVestInformation() {
     var startDate = new Date(document.getElementById('startDate').value);
     var vestDate = new Date(document.getElementById('vestDate').value);
-    console.log(vestDate);
     var todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
     var vestTimeInMS = vestDate.getTime() - startDate.getTime();

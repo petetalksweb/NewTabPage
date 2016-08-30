@@ -23,7 +23,6 @@ function generateYQLQuery(urls) {
 
 function generateAllBlogPostHTML(posts, elementID) {
     var containingDiv = document.getElementById(elementID);
-    console.log(posts);
     for(var i = 0; i < posts.length; i++) {
         containingDiv.appendChild(generateExpandCollapseItem(posts[i].entry.title, posts[i].entry.link.href, posts[i].entry.summary));
     }
