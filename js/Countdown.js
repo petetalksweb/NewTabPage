@@ -11,6 +11,9 @@ function msUntil(givenTime) {
 }
 
 function generateCountdownTime() {
+    var startTime = document.getElementById('startTime').value.substring(0,2);
+    console.log(startTime);
+    document.getElementById('endTime').value = vestDate;
     var currentTime = new Date();
     var countingToTime;
     if(currentTime.getHours() > 17 || currentTime.getHours() < 9) {
@@ -65,4 +68,23 @@ function formatTimeUntil(timeUntil){
 
 function getCountdownTimeInformation() {
     generateCountdownTimeHTML(generateCountdownTime());
+    setupModal('countdownInformationModal', 'countdownSettingsIcon', 'countdownSettingsClose');
+}
+function loadCountdownInformation() {
+    var startTime = getCookie('startTime');
+    var endTime = getCookie('endTime');
+    if(startTime) {
+        document.getElementById('startTime').value = startDate;
+        document.getElementById('endTime').value = vestDate;
+    }
+}
+function updateCountdownInformation() {
+    generateCountdownTimeHTML(generateCountdownTime());
+    updateCookie();
+}
+function updateCookie() {
+    var startDateString = document.getElementById('startDate').value;
+    var vestDateString = document.getElementById('vestDate').value;
+    setCookie('startDate', startDateString);
+    setCookie('vestDate', vestDateString);
 }

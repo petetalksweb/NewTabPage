@@ -4,7 +4,8 @@ var devRSSURLs = ['http://daverupert.com/atom.xml',
     'http://feeds.feedburner.com/paul-irish?format=xml',
     'http://feeds.feedburner.com/CssTricks?format=xml',
     'https://blog.codepen.io/feed/',
-    'https://hacks.mozilla.org/feed/'
+    'https://hacks.mozilla.org/feed/',
+    'https://jslive.com/rss'
 ];
 var newsRSSURLs = ['http://rss.cnn.com/rss/cnn_topstories.rss?format=xml',
     'http://www.wired.com/feed/',

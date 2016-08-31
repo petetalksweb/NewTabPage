@@ -28,24 +28,13 @@
 }
 @media(min-width: 300px) {
     .flex-container {
-        width: 300px;
+        width: 100%;
     }
     .widget {
         width: calc(100%);
     }
 }
 @media(min-width: 600px) {
-    .flex-container {
-        width: 600px;
-    }
-    .widget {
-        width: calc(100% / 2);
-    }
-}
-@media(min-width: 900px) {
-    .flex-container {
-        width: 900px;
-    }
     .widget {
         width: calc(100% / 2);
     }
@@ -57,12 +46,6 @@
     }
     .widget {
         width: calc(100% / 3);
-    }
-}
-
-@media(min-width: 1500px) {
-    .flex-container {
-        width: 1500px;
     }
 }
 
