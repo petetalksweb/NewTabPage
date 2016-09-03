@@ -25,6 +25,7 @@ function convertHNStoriesToTextLinkObjects(hnStories) {
     }
     return textLinkObjects;
 }
+
 function generateHNStoryURL(storyID) {
     return 'https://hacker-news.firebaseio.com/v0/item/' + storyID + '.json';
 }
