@@ -1,5 +1,4 @@
 from twitter import *
-import json
 
 def getTrends(event, context):
     twitterTokens = getTwitterTokens()
@@ -15,7 +14,7 @@ def getTrends(event, context):
     trends = trendsResponse[0]["trends"][:10]
 
     return {
-        'trends' : trends
+        'trends': trends
     }
 
 def getTwitterTokens():
