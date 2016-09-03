@@ -5,7 +5,8 @@ function getHackerNewInformation() {
         var hnTopStoriesIDs = hnTopStoryIDs.slice(0, 10);
         var hnStoryPromises = generateHNStoryPromises(hnTopStoriesIDs);
         Promise.all(hnStoryPromises).then(function(hnStories) {
-            generateAllHNStoryHTML(hnStories);
+            hnTextLinkObjects = convertHNStoriesToTextLinkObjects(hnStories);
+            generateTextLinks(hnTextLinkObjects, 'hackerNews');
         }).catch(function(error) {
             console.error(error);
         });
@@ -14,6 +15,16 @@ function getHackerNewInformation() {
     });
 }
 
+function convertHNStoriesToTextLinkObjects(hnStories) {
+    var textLinkObjects = [];
+    for(var i = 0; i < hnStories.length; i++) {
+        var currentTextLinkObject = {};
+        currentTextLinkObject.title = hnStories[i].title;
+        currentTextLinkObject.href = hnStories[i].url;
+        textLinkObjects.push(currentTextLinkObject);
+    }
+    return textLinkObjects;
+}
 function generateHNStoryURL(storyID) {
     return 'https://hacker-news.firebaseio.com/v0/item/' + storyID + '.json';
 }
@@ -24,24 +35,4 @@ function generateHNStoryPromises(hnTopStoryIDs) {
         hnStoryPromises[i] = ajaxGetJSON(generateHNStoryURL(hnTopStoryIDs[i]));
     }
     return hnStoryPromises;
-}
-
-function generateAllHNStoryHTML(hnStoryResponses) {
-    for(var i = 0; i < hnStoryResponses.length; i++) {
-        generateHNStoryHTML(hnStoryResponses[i]);
-    }
-}
-
-function generateHNStoryHTML(hnStory) {
-    var hnStoryDiv = document.createElement('div');
-    hnStoryDiv.className = 'hackerNewsLink';
-    hnStoryDiv.appendChild(generateHNStoryLink(hnStory));
-    document.getElementById('hackerNews').appendChild(hnStoryDiv);
-}
-
-function generateHNStoryLink(hnStory) {
-    var hnStoryLink = document.createElement('a');
-    hnStoryLink.href = hnStory.url;
-    hnStoryLink.innerHTML = hnStory.title;
-    return hnStoryLink;
 }

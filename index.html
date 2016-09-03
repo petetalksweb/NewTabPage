@@ -48,6 +48,12 @@
         .fa-settings {
             cursor: pointer;
         }
+        .textLink {
+            margin: 10px 5px;
+            display: block;
+            text-align: justify;
+            text-justify: inter-word;
+        }
     </style>
 </head>
 <body>
@@ -163,9 +169,9 @@
             </section>
         </div>
         <div class="flex-item widget">
-            <section id="reddit" class="flex-item-content">
+            <section id="devRSS" class="flex-item-content">
                 <h1>
-                    Reddit Front Page
+                    Blogs
                 </h1>
                 <hr />
             </section>
@@ -179,25 +185,19 @@
             </section>
         </div>
         <div class="flex-item widget">
-            <section id="devRSS" class="flex-item-content">
+            <section id="reddit" class="flex-item-content">
                 <h1>
-                    Blogs
+                    Reddit Front Page
                 </h1>
                 <hr />
             </section>
         </div>
+
+
         <div class="flex-item widget">
             <section id="twitter" class="flex-item-content">
                 <h1>
                     Twitter Trends
-                </h1>
-                <hr />
-            </section>
-        </div>
-        <div class="flex-item widget">
-            <section id="amazon" class="flex-item-content">
-                <h1>
-                    Top Books on Amazon
                 </h1>
                 <hr />
             </section>
@@ -210,6 +210,10 @@
                 <hr />
             </section>
         </div>
+        <template id="textLinkTemplate">
+            <a class="textLink" />
+        </template>
+        <script type="text/javascript" src="js/textLink.js"></script>
         <script type="text/javascript" src="js/Modal.js"></script>
         <script type="text/javascript" src="js/Cookie.js"></script>
         <script type="text/javascript" src="js/ExpandCollapseItem.js"></script>
@@ -224,6 +228,7 @@
         <script type="text/javascript" src="js/Reddit.js"></script>
         <script type="text/javascript" src="js/Twitter.js"></script>
         <script type="text/javascript" src="js/Amazon.js"></script>
+        <script type="text/javascript" src="js/GoogleTrends.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </div>
 </body>
