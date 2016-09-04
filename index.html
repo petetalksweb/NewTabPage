@@ -54,6 +54,9 @@
             text-align: justify;
             text-justify: inter-word;
         }
+        .rssUrl {
+            width: 500px;
+        }
     </style>
 </head>
 <body>
@@ -169,19 +172,39 @@
             </section>
         </div>
         <div class="flex-item widget">
-            <section id="devRSS" class="flex-item-content">
+            <section id="blogs" class="flex-item-content">
                 <h1>
                     Blogs
+                    <i class="fa fa-settings" id="blogSettingsIcon"></i>
                 </h1>
                 <hr />
+                <div id="blogInformationModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="blogSettingsClose">×</span>
+                        <div class="center" id="blogRssUrlInputDiv">
+                        </div>
+                        <button onclick="addRssURLInput('blogRssUrlInputDiv')">Add</button>
+                        <button onclick="saveRssURLs('blogs')">Save</button>
+                    </div>
+                </div>
             </section>
         </div>
         <div class="flex-item widget">
-            <section id="newsRSS" class="flex-item-content">
+            <section id="news" class="flex-item-content">
                 <h1>
                     News
+                    <i class="fa fa-settings" id="newsSettingsIcon"></i>
                 </h1>
                 <hr />
+                <div id="newsInformationModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="newsSettingsClose">×</span>
+                        <div class="center" id="newsRssUrlInputDiv">
+                        </div>
+                        <button onclick="addRssURLInput('newsRssUrlInputDiv')">Add</button>
+                        <button onclick="saveRssURLs('news')">Save</button>
+                    </div>
+                </div>
             </section>
         </div>
         <div class="flex-item widget">
@@ -213,6 +236,12 @@
         <template id="textLinkTemplate">
             <a class="textLink" />
         </template>
+        <template id="rssURLInput">
+            <div>
+                <input type="text" class="blogRssUrl rssUrl" />
+                <span onclick="deleteURL()">×</span>
+            </div>
+        </template>
         <script type="text/javascript" src="js/textLink.js"></script>
         <script type="text/javascript" src="js/Modal.js"></script>
         <script type="text/javascript" src="js/Cookie.js"></script>
@@ -227,7 +256,6 @@
         <script type="text/javascript" src="js/RSS.js"></script>
         <script type="text/javascript" src="js/Reddit.js"></script>
         <script type="text/javascript" src="js/Twitter.js"></script>
-        <script type="text/javascript" src="js/Amazon.js"></script>
         <script type="text/javascript" src="js/GoogleTrends.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </div>
