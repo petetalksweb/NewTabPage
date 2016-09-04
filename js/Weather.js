@@ -33,7 +33,7 @@ function getWeatherInformation() {
 function getWeatherDataForPosition(userPosition) {
     var weatherURL = formatWeatherURL(userPosition);
     ajaxGetJSON(weatherURL).then(function(weatherResponse) {
-        displayWeather(weatherResponse);
+        displayWeather(weatherResponse.weather);
     }).catch(function(error) {
         console.error(error);
     });
@@ -69,10 +69,9 @@ function formatPosition(geolocatedPosition) {
 }
 
 function formatWeatherURL(userPosition) {
-    return 'http://api.openweathermap.org/data/2.5/weather?units=imperial' +
+    return 'https://morbi1lqbb.execute-api.us-west-2.amazonaws.com/dev/weather?' +
         '&lat=' + userPosition.lat +
-        '&lon=' + userPosition.lon +
-        '&APPID=03cac59ece41996f5673208b2ed57345'; // Free API? I'll risk it
+        '&lon=' + userPosition.lon;
 }
 
 function formatTemperature(temperature) {
