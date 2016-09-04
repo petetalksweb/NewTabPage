@@ -28,20 +28,20 @@ function getVestInformation() {
 }
 
 function loadVestInformation() {
-    var startDate = getCookie('startDate');
-    var vestDate = getCookie('vestDate');
-    if(startDate) {
-        document.getElementById('startDate').value = startDate;
-        document.getElementById('vestDate').value = vestDate;
+    if(!localStorage.getItem('startDate')) {
+        localStorage.setItem('startDate', '2014-07-14');
     }
+    if(!localStorage.getItem('vestDate')) {
+        localStorage.setItem('vestDate', '2017-07-14');
+    }
+    document.getElementById('startDate').value = localStorage.getItem('startDate');
+    document.getElementById('vestDate').value = localStorage.getItem('vestDate');
 }
 function updateVestInformation() {
     generateVestInformationHTML(calculateVestInformation());
-    updateCookie();
+    updateLocalStorage();
 }
-function updateCookie() {
-    var startDateString = document.getElementById('startDate').value;
-    var vestDateString = document.getElementById('vestDate').value;
-    setCookie('startDate', startDateString);
-    setCookie('vestDate', vestDateString);
+function updateLocalStorage() {
+    localStorage.setItem('startDate', document.getElementById('startDate').value);
+    localStorage.setItem('vestDate', document.getElementById('vestDate').value);
 }
