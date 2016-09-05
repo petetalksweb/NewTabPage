@@ -1,40 +1,12 @@
-function generateExpandCollapseItem(title, link, description) {
-    var expandableItem = document.createElement('div');
-    expandableItem.className = 'expandableItem';
-    expandableItem.appendChild(generateExpandCollapseIcon());
-    expandableItem.appendChild(generateExpandableItemContent(title, link, description));
-    return expandableItem;
-}
-
-function generateExpandCollapseIcon() {
-    var expandCollapseIcon = document.createElement('div');
-    expandCollapseIcon.className = 'expandCollapseIcon';
-    expandCollapseIcon.onclick = function() {expandCollapseItem(this);};
-    expandCollapseIcon.innerHTML = '+';
-    return expandCollapseIcon;
-}
-
-function generateExpandableItemContent(title, link, description) {
-    var expandableItemContent = document.createElement('div');
-    expandableItemContent.className = 'expandableItemContent';
-    expandableItemContent.appendChild(generateExpandableItemTitle(title, link));
-    expandableItemContent.appendChild(generateExpandableItemDescription(description));
-    return expandableItemContent;
-}
-
-function generateExpandableItemTitle(title, link) {
-    var expandableItemTitle = document.createElement('a');
-    expandableItemTitle.href = link;
-    expandableItemTitle.className = 'expandableItemTitle';
-    expandableItemTitle.innerHTML = title;
-    return expandableItemTitle;
-}
-
-function generateExpandableItemDescription(description) {
-    var expandableItemDescription = document.createElement('div');
-    expandableItemDescription.className = 'expandableItemDescription';
+function generateExpandableItem(title, link, description) {
+    var expandableItemTemplate = document.getElementById('expandableItemTemplate');
+    var expandableItem = expandableItemTemplate.content.cloneNode(true);
+    var expandableItemLink = expandableItem.querySelector('a');
+    expandableItemLink.href = link;
+    expandableItemLink.innerHTML = title;
+    var expandableItemDescription = expandableItem.querySelector('.expandableItemDescription');
     expandableItemDescription.innerHTML = description;
-    return expandableItemDescription;
+    return expandableItem;
 }
 
 function expandCollapseItem(expandCollapseIcon) {
