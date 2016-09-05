@@ -51,11 +51,12 @@
         .textLink {
             margin: 10px 5px;
             display: block;
-            text-align: justify;
-            text-justify: inter-word;
         }
         .rssUrl {
             width: 500px;
+        }
+        .quote {
+            font-style: italic;
         }
     </style>
 </head>
@@ -127,16 +128,17 @@
             </section>
         </div>
         <div class="flex-item widget">
-            <section id="countdown" class="flex-item-content">
+            <section id="qotd" class="flex-item-content">
                 <h1>
-                    Countdown
-                    <i class="fa fa-settings" id="countdownSettingsIcon"></i>
+                    Quote of the day
                 </h1>
                 <hr />
                 <div class="fakeTable">
                     <div class="fakeTableCell">
-                        <div id="countdownTime" class="center"></div>
-                        <div id="countdownUntil" class="center"></div>
+                        <div id="quote" class="center quote"></div>
+                        <br />
+                        <div id="quoteAuthor" class="center"></div>
+                        <span style="z-index:50;font-size:0.9em;"><img src="https://theysaidso.com/branding/theysaidso.png" height="20" width="20" alt="theysaidso.com"/><a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com" style="color: #9fcc25; margin-left: 4px; vertical-align: middle;">theysaidso.com</a></span>
                     </div>
                 </div>
                 <div id="countdownInformationModal" class="modal">
@@ -223,14 +225,6 @@
             </section>
         </div>
         <div class="flex-item widget">
-            <section id="google" class="flex-item-content">
-                <h1>
-                    Google Trends
-                </h1>
-                <hr />
-            </section>
-        </div>
-        <div class="flex-item fullWidget">
             <section id="wikipedia" class="flex-item-content">
                 <h1>
                     Random Wikipedia Article
@@ -258,19 +252,17 @@
         </template>
         <script type="text/javascript" src="js/textLink.js"></script>
         <script type="text/javascript" src="js/Modal.js"></script>
-        <script type="text/javascript" src="js/Cookie.js"></script>
         <script type="text/javascript" src="js/ExpandCollapseItem.js"></script>
         <script type="text/javascript" src="js/AJAXPromises.js"></script>
         <script type="text/javascript" src="js/UserPosition.js"></script>
         <script type="text/javascript" src="js/Weather.js"></script>
         <script type="text/javascript" src="js/HackerNews.js"></script>
         <script type="text/javascript" src="js/Vest.js"></script>
-        <script type="text/javascript" src="js/Countdown.js"></script>
         <script type="text/javascript" src="js/Wikipedia.js"></script>
         <script type="text/javascript" src="js/RSS.js"></script>
         <script type="text/javascript" src="js/Reddit.js"></script>
         <script type="text/javascript" src="js/Twitter.js"></script>
-        <script type="text/javascript" src="js/GoogleTrends.js"></script>
+        <script type="text/javascript" src="js/Quotes.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </div>
 </body>

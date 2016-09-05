@@ -1,6 +1,5 @@
 function getTwitterInformation() {
-    ajaxGetJSON('https://morbi1lqbb.execute-api.us-west-2.amazonaws.com/dev/twitter').then(function(twitterResponse) {
-        console.log(twitterResponse);
+    ajaxGetJSONWithCaching('https://morbi1lqbb.execute-api.us-west-2.amazonaws.com/dev/twitter', 1).then(function(twitterResponse) {
         var twitterTrendTextLinkObjects = convertTwitterTrendsToTextLinkObjects(twitterResponse.trends);
         generateTextLinks(twitterTrendTextLinkObjects, 'twitter');
     })
